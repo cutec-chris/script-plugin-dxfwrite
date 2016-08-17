@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <PathDelim Value="\"/>
+    <Version Value="9"/>
+    <BuildModes Active="Default"/>
+    <Units Count="51">
+      <Unit0>
+        <Filename Value="dxfwrite.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
+        <CursorPos X="7" Y="12"/>
+        <UsageCount Value="59"/>
+        <Loaded Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="ucapture.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="7"/>
+        <CursorPos X="35" Y="8"/>
+        <UsageCount Value="25"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="upreview.pas"/>
+        <ComponentName Value="fPreview"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="uPreview"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="22" Y="35"/>
+        <UsageCount Value="22"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="..\usb\setupapi.pas"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="20"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="..\usb\udeleteusb.pas"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="20"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="..\serialport\tinkerforge\IPConnection.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="579"/>
+        <CursorPos Y="601"/>
+        <UsageCount Value="22"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="..\serialport\tinkerforge\Device.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="19"/>
+        <CursorPos X="10" Y="29"/>
+        <UsageCount Value="21"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="..\serialport\tinkerforge\BrickletLCD20x4.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="67"/>
+        <CursorPos X="32" Y="18"/>
+        <UsageCount Value="21"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="..\serialport\tinkerforge\BrickletLCD16x2.pas"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="21"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="..\..\..\..\tcscmd_git\src\tcsbus\utcsbus.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="190"/>
+        <CursorPos X="14" Y="194"/>
+        <UsageCount Value="19"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="..\..\..\..\tcscmd_git\src\tcsbus\utcsbusinterfaces.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="184"/>
+        <CursorPos X="29" Y="8"/>
+        <UsageCount Value="19"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="..\..\..\..\tcscmd_git\src\tcsbus\utcsinternbus.pas"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="19"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="..\..\..\..\tcscmd_git\src\tcsbus\D2XXUnit.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="393"/>
+        <CursorPos Y="409"/>
+        <UsageCount Value="19"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="..\..\..\..\tcscmd_git\src\tcsbus\utcswirelessintf.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="104"/>
+        <CursorPos X="34" Y="108"/>
+        <UsageCount Value="19"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="C:\Programme\lazarus124\fpc\2.6.4\source\rtl\inc\systemh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="907"/>
+        <CursorPos X="11" Y="925"/>
+        <UsageCount Value="9"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="..\..\..\..\tcscmd_git\src\mypersistents.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="199"/>
+        <CursorPos X="15" Y="217"/>
+        <UsageCount Value="9"/>
+      </Unit15>
+      <Unit16>
+        <Filename Value="..\serialport\tinkerforge\LEConverter.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="7"/>
+        <CursorPos X="3" Y="16"/>
+        <UsageCount Value="9"/>
+      </Unit16>
+      <Unit17>
+        <Filename Value="..\serialport\serial_win.pp"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="100"/>
+        <CursorPos X="53" Y="19"/>
+        <UsageCount Value="24"/>
+      </Unit17>
+      <Unit18>
+        <Filename Value="C:\Programme\lazarus124\fpc\2.6.4\source\rtl\objpas\sysutils\sysutilh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="16"/>
+        <CursorPos X="24" Y="34"/>
+        <UsageCount Value="9"/>
+      </Unit18>
+      <Unit19>
+        <Filename Value="C:\Programme\lazarus124\fpc\2.6.4\source\rtl\win\sysosh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="4"/>
+        <CursorPos X="7" Y="23"/>
+        <UsageCount Value="9"/>
+      </Unit19>
+      <Unit20>
+        <Filename Value="..\serialport\serial_osx.pp"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="45" Y="21"/>
+        <UsageCount Value="24"/>
+      </Unit20>
+      <Unit21>
+        <Filename Value="C:\Programme\lazarus124\fpc\2.6.4\source\rtl\unix\unix.pp"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="7"/>
+        <CursorPos X="5" Y="25"/>
+        <UsageCount Value="9"/>
+      </Unit21>
+      <Unit22>
+        <Filename Value="..\..\..\..\..\fpc\trunk\packages\rtl-extra\src\unix\serial.pp"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos Y="20"/>
+        <UsageCount Value="10"/>
+      </Unit22>
+      <Unit23>
+        <Filename Value="..\components\synapse\synaser.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="91"/>
+        <CursorPos X="10" Y="759"/>
+        <UsageCount Value="18"/>
+      </Unit23>
+      <Unit24>
+        <Filename Value="..\components\pascalscript\uPSRuntime.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="6319"/>
+        <CursorPos Y="6428"/>
+        <UsageCount Value="10"/>
+      </Unit24>
+      <Unit25>
+        <Filename Value="..\components\pascalscript\x86.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="145"/>
+        <CursorPos Y="163"/>
+        <UsageCount Value="13"/>
+      </Unit25>
+      <Unit26>
+        <Filename Value="..\..\..\..\tcscmd_git\src\synaser.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1619"/>
+        <CursorPos Y="1642"/>
+        <UsageCount Value="12"/>
+      </Unit26>
+      <Unit27>
+        <Filename Value="..\..\..\general\src\Utils.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="500"/>
+        <CursorPos Y="533"/>
+        <UsageCount Value="10"/>
+      </Unit27>
+      <Unit28>
+        <Filename Value="C:\Programme\lazarus140\fpc\2.6.4\source\packages\fcl-registry\src\registry.pp"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="71"/>
+        <CursorPos X="14" Y="95"/>
+        <UsageCount Value="10"/>
+      </Unit28>
+      <Unit29>
+        <Filename Value="..\..\..\..\..\..\visual_test_git\src\uvisualscripting.pas"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="28"/>
+        <CursorPos X="39" Y="276"/>
+        <UsageCount Value="12"/>
+        <Loaded Value="True"/>
+      </Unit29>
+      <Unit30>
+        <Filename Value="C:\Programme\lazarus\fpc\2.6.4\source\packages\fcl-image\src\fpimage.pp"/>
+        <UnitName Value="FPimage"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="206"/>
+        <CursorPos X="19" Y="171"/>
+        <UsageCount Value="11"/>
+      </Unit30>
+      <Unit31>
+        <Filename Value="C:\Programme\lazarus\fpc\2.6.4\source\rtl\morphos\graphics.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="2180"/>
+        <CursorPos X="40" Y="2199"/>
+        <UsageCount Value="10"/>
+      </Unit31>
+      <Unit32>
+        <Filename Value="C:\Programme\lazarus\lcl\intfgraphics.pas"/>
+        <UnitName Value="IntfGraphics"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="88"/>
+        <CursorPos X="3" Y="107"/>
+        <UsageCount Value="10"/>
+      </Unit32>
+      <Unit33>
+        <Filename Value="..\..\..\..\..\..\visual_test_git\src\ucapture.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="121"/>
+        <CursorPos Y="123"/>
+        <UsageCount Value="10"/>
+      </Unit33>
+      <Unit34>
+        <Filename Value="DSPack\directshow9.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="48"/>
+        <CursorPos X="2" Y="70"/>
+        <UsageCount Value="10"/>
+      </Unit34>
+      <Unit35>
+        <Filename Value="directx\directshow9.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="49"/>
+        <CursorPos X="9" Y="73"/>
+        <UsageCount Value="10"/>
+      </Unit35>
+      <Unit36>
+        <Filename Value="DSPack\WMF9.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="7"/>
+        <CursorPos X="16" Y="29"/>
+        <UsageCount Value="10"/>
+      </Unit36>
+      <Unit37>
+        <Filename Value="C:\lazarus144\lcl\include\lclintf.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="56"/>
+        <CursorPos Y="78"/>
+        <UsageCount Value="10"/>
+      </Unit37>
+      <Unit38>
+        <Filename Value="C:\lazarus144\lcl\intfgraphics.pas"/>
+        <UnitName Value="IntfGraphics"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="773"/>
+        <CursorPos Y="796"/>
+        <UsageCount Value="10"/>
+      </Unit38>
+      <Unit39>
+        <Filename Value="C:\lazarus144\lcl\lclproc.pas"/>
+        <UnitName Value="LCLProc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="838"/>
+        <CursorPos X="42" Y="859"/>
+        <UsageCount Value="10"/>
+      </Unit39>
+      <Unit40>
+        <Filename Value="C:\lazarus144\lcl\forms.pp"/>
+        <UnitName Value="Forms"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1796"/>
+        <CursorPos Y="1842"/>
+        <UsageCount Value="10"/>
+      </Unit40>
+      <Unit41>
+        <Filename Value="C:\lazarus144\lcl\include\application.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1059"/>
+        <CursorPos Y="1088"/>
+        <UsageCount Value="10"/>
+      </Unit41>
+      <Unit42>
+        <Filename Value="..\..\..\components\pascalscript\Source\uPSRuntime.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="2969"/>
+        <CursorPos Y="2993"/>
+        <UsageCount Value="10"/>
+      </Unit42>
+      <Unit43>
+        <Filename Value="..\..\..\components\pascalscript\Source\uPSR_dll.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="41"/>
+        <CursorPos X="14" Y="79"/>
+        <UsageCount Value="10"/>
+      </Unit43>
+      <Unit44>
+        <Filename Value="..\..\..\..\..\general\pascal_script\genpascalscript.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="8"/>
+        <CursorPos X="47" Y="28"/>
+        <UsageCount Value="10"/>
+      </Unit44>
+      <Unit45>
+        <Filename Value="C:\lazarus144\lcl\include\screen.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="124"/>
+        <CursorPos Y="146"/>
+        <UsageCount Value="10"/>
+      </Unit45>
+      <Unit46>
+        <Filename Value="C:\lazarus144\lcl\lclmessageglue.pas"/>
+        <UnitName Value="LCLMessageGlue"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="91"/>
+        <CursorPos Y="112"/>
+        <UsageCount Value="10"/>
+      </Unit46>
+      <Unit47>
+        <Filename Value="C:\lazarus144\lcl\interfaces\win32\win32wsforms.pp"/>
+        <UnitName Value="Win32WSForms"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="347"/>
+        <CursorPos Y="395"/>
+        <UsageCount Value="10"/>
+      </Unit47>
+      <Unit48>
+        <Filename Value="C:\lazarus144\lcl\interfaces\win32\win32callback.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="2525"/>
+        <CursorPos Y="2558"/>
+        <UsageCount Value="10"/>
+      </Unit48>
+      <Unit49>
+        <Filename Value="..\..\..\components\pascalscript\Source\uPSDebugger.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="117"/>
+        <CursorPos Y="139"/>
+        <UsageCount Value="10"/>
+      </Unit49>
+      <Unit50>
+        <Filename Value="uvideofunctions.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="40"/>
+        <CursorPos Y="33"/>
+        <UsageCount Value="10"/>
+      </Unit50>
+    </Units>
+    <JumpHistory Count="4" HistoryIndex="3">
+      <Position1>
+        <Filename Value="dxfwrite.lpr"/>
+        <Caret Line="12" Column="10"/>
+      </Position1>
+      <Position2>
+        <Filename Value="dxfwrite.lpr"/>
+        <Caret Line="6" Column="19"/>
+      </Position2>
+      <Position3>
+        <Filename Value="dxfwrite.lpr"/>
+        <Caret Line="12" Column="14"/>
+      </Position3>
+      <Position4>
+        <Filename Value="dxfwrite.lpr"/>
+        <Caret Line="9" Column="16"/>
+      </Position4>
+    </JumpHistory>
+  </ProjectSession>
+  <Debugging>
+    <BreakPoints Count="9">
+      <Item1>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="..\serialport\serialport.lpr"/>
+        <Line Value="198"/>
+      </Item1>
+      <Item2>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="..\serialport\serialport.lpr"/>
+        <Line Value="182"/>
+      </Item2>
+      <Item3>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="..\serialport\serialport.lpr"/>
+        <Line Value="169"/>
+      </Item3>
+      <Item4>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="..\serialport\serialport.lpr"/>
+        <Line Value="156"/>
+      </Item4>
+      <Item5>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="..\serialport\serialport.lpr"/>
+        <Line Value="143"/>
+      </Item5>
+      <Item6>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="..\serialport\serialport.lpr"/>
+        <Line Value="121"/>
+      </Item6>
+      <Item7>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="..\serialport\serialport.lpr"/>
+        <Line Value="100"/>
+      </Item7>
+      <Item8>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="..\serialport\serialport.lpr"/>
+        <Line Value="71"/>
+      </Item8>
+      <Item9>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="..\serialport\serialport.lpr"/>
+        <Line Value="58"/>
+      </Item9>
+    </BreakPoints>
+  </Debugging>
+</CONFIG>
