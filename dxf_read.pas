@@ -18,13 +18,15 @@
 
 unit DXF_read;
 
+{$MODE Delphi}
+
 interface
 
 uses
   { Borland }
-  Windows,SysUtils,StdCtrls,ComCtrls,Dialogs,Classes,Graphics,
+  Windows,SysUtils,Classes,
   { Mine }
-  DXF_structs,DXF_Utils,Thinkbox,Math;
+  DXF_structs,DXF_Utils,Math;
 
 const
   message_delay_ms = 1500;
@@ -99,7 +101,6 @@ type
     pBuf        : ^tCharArray;
     Line_num    : longint;
     fLine       : shortstring;
-    progress    : TProgressBar;
     // useful bits to make parsing easier...
     file_pos   : integer;
     marked_pos : integer;
@@ -223,9 +224,6 @@ begin
   colour_BYLAYER    := false;
   Line_num          := 0;
   backflag          := false;
-  progress          := Thinking_box.bar;
-  progress.position := 0;
-  progress.max      := FileSize(IO_chan) div MaxSizeOfBuf;
   min_extents       := origin3D;
   max_extents       := origin3D;
 end;
@@ -241,7 +239,7 @@ begin
   Inherited Destroy;
 end;
 { --------------------------------------------------------------------------- }
-{ Routines for fetching codes and values
+{ Routines for fetching codes and values                                      }
 { --------------------------------------------------------------------------- }
 procedure DXF_Reader.go_back_to_start;
 begin
@@ -276,7 +274,6 @@ function DXF_Reader.NextGroupCode: integer;
     file_pos := FilePos(IO_chan);
     BlockRead(IO_chan,pBuf^,SizeOfBuf,num_in_buf); ec:=IoResult; ii:=0;
     If (ec=0) and (num_in_buf=0) then ec:=-1; GotMore:=(ec=0);
-    progress.position := progress.position+1;
   end{GotMore};
 
   // Sometimes you get (download) a bad DXF file which has a couple of blank
@@ -393,7 +390,7 @@ begin
   until (result);
 end;
 { --------------------------------------------------------------------------- }
-{ Header section
+{ Header section                                                              }
 { --------------------------------------------------------------------------- }
 function DXF_Reader.move_to_header_section : boolean;
 begin
@@ -430,7 +427,7 @@ begin
   result := max_extents;
 end;
 { --------------------------------------------------------------------------- }
-{ Blocks section
+{ Blocks section                                                              }
 { --------------------------------------------------------------------------- }
 function DXF_Reader.move_to_blocks_section : boolean;
 begin
@@ -493,7 +490,7 @@ begin
   end;
 end;
 { --------------------------------------------------------------------------- }
-{ Tables (Layers - VPort) section
+{ Tables (Layers - VPort) section                                             }
 { --------------------------------------------------------------------------- }
 function DXF_Reader.move_to_tables_section : boolean;
 begin
@@ -603,12 +600,13 @@ begin
       end;
     except
       on E:DXF_read_exception do begin
-        stopped_thinking;
+        //stopped_thinking;
         if MessageBox(0,@E.message[1],'DXF read error warning',MB_OKCANCEL)=IDCANCEL then
           raise DXF_read_exception.Create('User aborted',-1);
-        thinking_bar(nil,'Reading DXF file...');
+        //thinking_bar(nil,'Reading DXF file...');
       end;
-      on E:Exception do Showmessage(E.Message);
+      on E:Exception do
+        raise;
     end;
   until result;
 end;
@@ -886,47 +884,48 @@ function DXF_Reader.read_file : boolean;
 var lp1 : integer;
 begin
   result := true;
-  thinking_bar(nil,'Reading DXF file...');
+  //thinking_bar(nil,'Reading DXF file...');
   try
     mark_position;
     if not (move_to_header_section and read_header) then begin
-      Thinking(nil,'No Header or invalid Header section in DXF file');
+      //Thinking(nil,'No Header or invalid Header section in DXF file');
       Sleep(message_delay_ms);
       goto_marked_position;
     end;
     mark_position;
     if not (move_to_tables_section and read_tables) then begin
-      Thinking(nil,'No Layers or invalid Tables section in DXF file');
+      //Thinking(nil,'No Layers or invalid Tables section in DXF file');
       Sleep(message_delay_ms);
       goto_marked_position;
     end;
     mark_position;
     if not (move_to_blocks_section and read_blocks) then begin
-      Thinking(nil,'No Blocks or invalid Blocks section in DXF file');
+      //Thinking(nil,'No Blocks or invalid Blocks section in DXF file');
       Sleep(message_delay_ms);
       goto_marked_position;
     end;
     mark_position;
-    thinking_bar(nil,'Reading DXF file...');
+    //thinking_bar(nil,'Reading DXF file...');
     if not (move_to_entity_section and read_entities) then
       raise DXF_read_exception.Create('No Entities or invalid Entities section in DXF file',-1);
   except
     on E:DXF_read_exception do begin
-      stopped_thinking;
+      //stopped_thinking;
       MessageBox(0,@E.message[1],'DXF Read Error',MB_ICONWARNING);
     end;
     on E:EAccessViolation do begin
-      stopped_thinking;
-      MessageDlg(E.message, mtWarning, [mbOK], 0);
+      //stopped_thinking;
+      //MessageDlg(E.message, mtWarning, [mbOK], 0);
+      raise;
     end;
   end;
   if p1_eq_p2_3D(min_extents,origin3D) or p1_eq_p2_3D(max_extents,origin3D) then begin
-    thinking(nil,'File contained no Max/Min extents. Scanning...');
+    //thinking(nil,'File contained no Max/Min extents. Scanning...');
     sleep(message_delay_ms); // just a delay to let the message be visible
     for lp1:=0 to DXF_layers.count-1 do
       DXF_Layer(DXF_Layers[lp1]).max_min_extents(max_extents,min_extents);
   end;
-  stopped_thinking;
+  //stopped_thinking;
 end;
 
 function DXF_Reader.remove_empty_layers : boolean;

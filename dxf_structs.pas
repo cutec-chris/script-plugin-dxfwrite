@@ -9,13 +9,15 @@
 ///////////////////////////////////////////////////////////////////////////////
 unit DXF_structs;
 
+{$MODE Delphi}
+
 interface
 
 uses
   { Borland }
-  Windows,Classes,Graphics,SysUtils,Dialogs,Math,DXF_Utils,
+  Classes,SysUtils,Math,DXF_Utils,FPimage,FPCanvas,FPImgCanv
   { Mine }
-  Thinkbox;
+  ;
 ///////////////////////////////////////////////////////////////////////////////
 // Useful definitions
 ///////////////////////////////////////////////////////////////////////////////
@@ -55,7 +57,8 @@ type
 ///////////////////////////////////////////////////////////////////////////////
 type
   DXF_Entity = class
-    colour   : TColor;
+  public
+    colour   : TFPColor;
     colinx   : integer;
     OCS_WCS  : pMatrix;
     OCS_axis : Point3D;
@@ -63,10 +66,10 @@ type
     destructor  destroy;                                                override;
     procedure   init_OCS_WCS_matrix(OCSaxis:Point3D);                   virtual;
     procedure   update_block_links(blist:TObject);                      virtual; abstract;
-    procedure   Draw(acanvas:TCanvas; map_fn:coord_convert; OCS:pM);    virtual; abstract;
-    procedure   DrawVertices(acanvas:TCanvas; map_fn:coord_convert; OCS:pM);    virtual; abstract;
+    procedure   Draw(acanvas:TFPCustomCanvas; map_fn:coord_convert; OCS:pM);    virtual; abstract;
+    procedure   DrawVertices(acanvas:TFPCustomCanvas; map_fn:coord_convert; OCS:pM);    virtual; abstract;
     procedure   setcolour_index(col:integer);                           virtual;
-    procedure   setcolour(col:TColor);                                  virtual;
+    procedure   setcolour(col:TFPColor);                                  virtual;
     procedure   translate(T:Point3D);                                   virtual; abstract;
     procedure   quantize_coords(epsilon:double; mask:byte);             virtual; abstract;
     function    count_points       : integer;                           virtual;
@@ -96,8 +99,8 @@ type
     constructor create(bname:string; refpoint:Point3D);
     destructor  destroy; override;
     procedure   update_block_links(blist:TObject);                      override;
-    procedure   Draw(acanvas:TCanvas; map_fn:coord_convert; OCS:pM); override;
-    procedure   DrawVertices(acanvas:TCanvas; map_fn:coord_convert; OCS:pM); override;
+    procedure   Draw(acanvas:TFPCustomCanvas; map_fn:coord_convert; OCS:pM); override;
+    procedure   DrawVertices(acanvas:TFPCustomCanvas; map_fn:coord_convert; OCS:pM); override;
     function    details : string;                                       override;
     procedure   write_to_DXF(var IO:textfile; layer:string);            override;
     procedure   max_min_extents(var emax,emin:Point3D);                 override;
@@ -111,8 +114,8 @@ type
   Point_ = class(DXF_Entity) // always WCS
     p1 : Point3D;
     constructor create(OCSaxis,p:Point3D; col:integer);
-    procedure   Draw(acanvas:TCanvas; map_fn:coord_convert; OCS:pM); override;
-    procedure   DrawVertices(acanvas:TCanvas; map_fn:coord_convert; OCS:pM); override;
+    procedure   Draw(acanvas:TFPCustomCanvas; map_fn:coord_convert; OCS:pM); override;
+    procedure   DrawVertices(acanvas:TFPCustomCanvas; map_fn:coord_convert; OCS:pM); override;
     procedure   translate(T:Point3D);                                  override;
     procedure   quantize_coords(epsilon:double; mask:byte);            override;
     function    details : string;                                      override;
@@ -132,8 +135,8 @@ type
     align_pt  : Point3D; // alignment point
     hor_align : integer; // horizontal justification code
     constructor create(OCSaxis,p,ap:Point3D; ss:string; height:double; col,ha:integer);
-    procedure   Draw(acanvas:TCanvas; map_fn:coord_convert; OCS:pM); override;
-    procedure   calcText(acanvas:TCanvas; map_fn:coord_convert; OCS:pM; t:string);
+    procedure   Draw(acanvas:TFPCustomCanvas; map_fn:coord_convert; OCS:pM); override;
+    procedure   calcText(acanvas:TFPCustomCanvas; map_fn:coord_convert; OCS:pM; t:string);
     function    details : string;                                override;
     procedure   write_to_DXF(var IO:textfile; layer:string);     override;
     procedure   max_min_extents(var emax,emin:Point3D);          override;
@@ -146,7 +149,7 @@ type
     tagstr  : string;
     visible : boolean;
     constructor create(OCSaxis,p,ap:Point3D; ss,tag:string; flag70,flag72:integer; height:double; col:integer);
-    procedure   Draw(acanvas:TCanvas; map_fn:coord_convert; OCS:pM); override;
+    procedure   Draw(acanvas:TFPCustomCanvas; map_fn:coord_convert; OCS:pM); override;
     function    details : string;                                override;
     procedure   write_to_DXF(var IO:textfile; layer:string);     override;
   end;
@@ -160,7 +163,7 @@ type
   Attdef_ = class(Attrib_) // always OCS
     promptstr : string;
     constructor create(OCSaxis,p,ap:Point3D; ss,tag,prompt:string; flag70,flag72:integer; height:double; col:integer);
-    procedure   Draw(acanvas:TCanvas; map_fn:coord_convert; OCS:pM); override;
+    procedure   Draw(acanvas:TFPCustomCanvas; map_fn:coord_convert; OCS:pM); override;
     procedure   write_to_DXF(var IO:textfile; layer:string);     override;
   end;
 ///////////////////////////////////////////////////////////////////////////////
@@ -180,7 +183,7 @@ type
     procedure   init_OCS_WCS_matrix(OCSaxis:Point3D);        override;
     procedure   update_block_links(blist:TObject);           override;
     function    block : Block_;
-    procedure   Draw(acanvas:TCanvas; map_fn:coord_convert; OCS:pM); override;
+    procedure   Draw(acanvas:TFPCustomCanvas; map_fn:coord_convert; OCS:pM); override;
     function    details : string;                            override;
     procedure   write_to_DXF(var IO:textfile; layer:string); override;
     procedure   max_min_extents(var emax,emin:Point3D);      override;
@@ -192,8 +195,8 @@ type
   Line_ = class(Point_) // always WCS
     p2 : Point3D;
     constructor create(p_1,p_2:Point3D; col:integer);
-    procedure   Draw(acanvas:TCanvas; map_fn:coord_convert; OCS:pM); override;
-    procedure   DrawVertices(acanvas:TCanvas; map_fn:coord_convert; OCS:pM); override;
+    procedure   Draw(acanvas:TFPCustomCanvas; map_fn:coord_convert; OCS:pM); override;
+    procedure   DrawVertices(acanvas:TFPCustomCanvas; map_fn:coord_convert; OCS:pM); override;
     procedure   translate(T:Point3D);                                  override;
     procedure   quantize_coords(epsilon:double; mask:byte);            override;
     function    count_points   : integer;                              override;
@@ -213,7 +216,7 @@ type
     radius : double;
     constructor create(OCSaxis,p_1:Point3D; radius_:double; col:integer);
     constructor create_from_polyline(ent1:DXF_Entity);
-    procedure   Draw(acanvas:TCanvas; map_fn:coord_convert; OCS:pM); override;
+    procedure   Draw(acanvas:TFPCustomCanvas; map_fn:coord_convert; OCS:pM); override;
     function    details : string;                                override;
     procedure   write_to_DXF(var IO:textfile; layer:string);     override;
     function    is_point_inside_object2D(p:Point3D) : boolean;   override;
@@ -226,7 +229,7 @@ type
   Arc_ = class(Circle_)  // always OCS
     angle1,angle2 : double;
     constructor create(OCSaxis,p_1:Point3D; radius_,sa,ea:double; col:integer);
-    procedure   Draw(acanvas:TCanvas; map_fn:coord_convert; OCS:pM); override;
+    procedure   Draw(acanvas:TFPCustomCanvas; map_fn:coord_convert; OCS:pM); override;
     function    details : string;                                override;
     procedure   write_to_DXF(var IO:textfile; layer:string);     override;
     function    is_point_inside_object2D(p:Point3D) : boolean;   override;
@@ -244,8 +247,8 @@ type
     attribs     : array[0..max_my_attribs-1] of double;
     constructor create(OCSaxis:Point3D; numpoints:integer; points:ppointlist; col:integer; closed_:boolean);
     destructor  destroy;                                               override;
-    procedure   Draw(acanvas:TCanvas; map_fn:coord_convert; OCS:pM); override;
-    procedure   DrawVertices(acanvas:TCanvas; map_fn:coord_convert; OCS:pM); override;
+    procedure   Draw(acanvas:TFPCustomCanvas; map_fn:coord_convert; OCS:pM); override;
+    procedure   DrawVertices(acanvas:TFPCustomCanvas; map_fn:coord_convert; OCS:pM); override;
     procedure   translate(T:Point3D);                                  override;
     procedure   quantize_coords(epsilon:double; mask:byte);            override;
     function    count_points   : integer;                              override;
@@ -296,7 +299,7 @@ type
     function    proper_name : string;                                  override;
     procedure   write_to_DXF(var IO:textfile; layer:string);           override;
     function    details : string;                                      override;
-    procedure   Draw(acanvas:TCanvas; map_fn:coord_convert; OCS:pM); override;
+    procedure   Draw(acanvas:TFPCustomCanvas; map_fn:coord_convert; OCS:pM); override;
   end;
 ///////////////////////////////////////////////////////////////////////////////
 // Polyline_ (polyface vertex array mesh) Definition
@@ -310,7 +313,7 @@ type
     function    proper_name : string;                                  override;
     procedure   write_to_DXF(var IO:textfile; layer:string);           override;
     function    details : string;                                      override;
-    procedure   Draw(acanvas:TCanvas; map_fn:coord_convert; OCS:pM); override;
+    procedure   Draw(acanvas:TFPCustomCanvas; map_fn:coord_convert; OCS:pM); override;
   end;
 ///////////////////////////////////////////////////////////////////////////////
 // Entity_List class definition
@@ -336,8 +339,8 @@ type
     property    name : string read list_name write list_name;
     function    add_entity_to_list(entity:DXF_Entity) : boolean;
     function    remove_entity(ent:DXF_Entity) : boolean;
-    procedure   draw_primitives(acanvas:TCanvas; map_fn:coord_convert; OCS:pM);
-    procedure   draw_vertices(acanvas:TCanvas; map_fn:coord_convert; OCS:pM);
+    procedure   draw_primitives(acanvas:TFPCustomCanvas; map_fn:coord_convert; OCS:pM);
+    procedure   draw_vertices(acanvas:TFPCustomCanvas; map_fn:coord_convert; OCS:pM);
     function    num_entities : integer;
     function    count_points   : integer;
     function    count_lines    : integer;
@@ -406,7 +409,7 @@ type
     function    get_min_extent         : Point3D;
     function    get_max_extent         : Point3D;
     // update the extents (not really needed)
-    procedure   max_min_extents(var emax,emin:Point3D);
+    procedure   max_min_extents(var aemax,aemin:Point3D);
   end;
 ///////////////////////////////////////////////////////////////////////////////
 // Selection_lists class definition
@@ -429,13 +432,15 @@ type
 ///////////////////////////////////////////////////////////////////////////////
 // Default AutoCad layer colours (1..7) - (8..user defined)
 ///////////////////////////////////////////////////////////////////////////////
-const
-  BYLAYER = 256;
+//const
+//  BYLAYER = (255,255,255,255);
 const
   def_cols = 12;
-  DXF_Layer_Colours : array[0..def_cols] of TColor = (clBlack, // zero - not used
-    clRed,    clYellow, clLime,   clAqua,   clBlue,   clPurple, {clWhite}clBlack,
+  {
+  DXF_Layer_Colours : array[0..def_cols] of TFPColor = (FPColor(0,0,0,0), // zero - not used
+    clRed,    clYellow, clLime,   clAqua,   clBlue,   clPurple, clBlack,
     clOlive,  clFuchsia,clTeal,   clGray,   clDkGray);
+  }
 ///////////////////////////////////////////////////////////////////////////////
 // Memory check variables
 ///////////////////////////////////////////////////////////////////////////////
@@ -453,7 +458,7 @@ implementation
 uses
   DXF_read, DXF_write;
 
-procedure draw_cross(acanvas:TCanvas; p1:TPoint);
+procedure draw_cross(acanvas:TFPCustomCanvas; p1:TPoint);
 var pa,pb : TPoint;
 begin
   pa.x := p1.x-2; pa.y := p1.y-2;
@@ -496,14 +501,19 @@ end;
 procedure DXF_Entity.setcolour_index(col:integer);
 begin
   colinx := col;
-  colour := DXF_Layer_Colours[col mod (def_cols+1)];
+  //TODO:colour := DXF_Layer_Colours[col mod (def_cols+1)];
 end;
 
-procedure DXF_Entity.setcolour(col:TColor);
+procedure DXF_Entity.setcolour(col: TFPColor);
 var lp1 : integer;
 begin
   colinx := 0;
-  for lp1:=0 to def_cols do if DXF_Layer_Colours[lp1]=col then colinx := lp1;
+  //TODO:
+  {
+  for lp1:=0 to def_cols do
+    if DXF_Layer_Colours[lp1]=col then
+      colinx := lp1;
+  }
   colour := col;
 end;
 
@@ -579,7 +589,7 @@ begin
     Insert_(entities[lp1]).update_block_links(blist);
 end;
 
-procedure Block_.Draw(acanvas:TCanvas; map_fn:coord_convert; OCS:pM);
+procedure Block_.Draw(acanvas:TFPCustomCanvas; map_fn:coord_convert; OCS:pM);
 var lp1        : integer;
     t_matrix   : pMatrix;
     TempMatrix : Matrix;
@@ -597,7 +607,7 @@ begin
     DXF_Entity(entities[lp1]).draw(acanvas,map_fn,t_matrix);
 end;
 
-procedure Block_.DrawVertices(acanvas:TCanvas; map_fn:coord_convert; OCS:pM);
+procedure Block_.DrawVertices(acanvas:TFPCustomCanvas; map_fn:coord_convert; OCS:pM);
 var lp1 : integer;
 begin
   for lp1:=0 to entities.count-1 do
@@ -642,22 +652,26 @@ begin
   init_OCS_WCS_matrix(OCSaxis);
 end;
 
-procedure Point_.Draw(acanvas:TCanvas; map_fn:coord_convert; OCS:pM);
+procedure Point_.Draw(acanvas:TFPCustomCanvas; map_fn:coord_convert; OCS:pM);
 var po       : TPoint;
     t_matrix : pMatrix;
 begin
   t_matrix := update_transformations(OCS_WCS,OCS);
-  with acanvas.Pen do if Color<>colour then Color:=colour;
+  {TODO:
+  with acanvas.Pen do
+    if acanvas.Pen.Color<>colour then
+      acanvas.Pen.Color:=colour;
+  }
   po := map_fn(p1,t_matrix);
   draw_cross(acanvas,po);
 end;
 
-procedure Point_.DrawVertices(acanvas:TCanvas; map_fn:coord_convert; OCS:pM);
+procedure Point_.DrawVertices(acanvas:TFPCustomCanvas; map_fn:coord_convert; OCS:pM);
 var po       : TPoint;
     t_matrix : pMatrix;
 begin
   t_matrix := update_transformations(OCS_WCS,OCS);
-  with acanvas.Pen do if Color<>colour then Color:=colour;
+  //TODO:with acanvas.Pen do if Color<>colour then Color:=colour;
   po := map_fn(p1,t_matrix);
   draw_cross(acanvas,po);
 end;
@@ -724,30 +738,32 @@ begin
   hor_align := ha;
 end;
 
-procedure Text_.calcText(acanvas:TCanvas; map_fn:coord_convert; OCS:pM; t:string);
+procedure Text_.calcText(acanvas:TFPCustomCanvas; map_fn:coord_convert; OCS:pM; t:string);
 var pa,dummy1,dummy2 : TPoint;
     Fheight          : integer;
 begin
-  with acanvas.Pen do if Color<>colour then Color:=colour;
+  //TODO:with acanvas.Pen do if Color<>colour then Color:=colour;
   // kludgy method for scaling text heights
   dummy1  := map_fn(origin3D,nil);
   dummy2  := map_fn(aPoint3D(0,h,0),nil);
   Fheight := 2+(dummy1.y-dummy2.y);
   if FHeight=2 then exit;
   with acanvas.Font do begin
-    if Height<>Fheight then Height := Fheight;
-    if color<>colour then color := colour;
+    //TODO:if Height<>Fheight then Height := Fheight;
+    //TODO:if color<>colour then color := colour;
   end;
+  {
   case hor_align of
     0 : SetTextAlign(acanvas.handle,TA_LEFT   + TA_BASELINE);
     1 : SetTextAlign(acanvas.handle,TA_CENTER + TA_BASELINE);
     2 : SetTextAlign(acanvas.handle,TA_RIGHT  + TA_BASELINE);
   end;
+  }
   pa := map_fn(align_pt,OCS_WCS);
   acanvas.TextOut(pa.x,pa.y,t);
 end;
 
-procedure Text_.Draw(acanvas:TCanvas; map_fn:coord_convert; OCS:pM);
+procedure Text_.Draw(acanvas:TFPCustomCanvas; map_fn:coord_convert; OCS:pM);
 var t_matrix : pMatrix;
 begin
   t_matrix := update_transformations(OCS_WCS,OCS);
@@ -787,7 +803,7 @@ begin
   else visible := true;
 end;
 
-procedure Attrib_.Draw(acanvas:TCanvas; map_fn:coord_convert; OCS:pM);
+procedure Attrib_.Draw(acanvas:TFPCustomCanvas; map_fn:coord_convert; OCS:pM);
 var t_matrix : pMatrix;
 begin
   t_matrix := update_transformations(OCS_WCS,OCS);
@@ -819,7 +835,7 @@ begin
   promptstr := prompt;
 end;
 
-procedure Attdef_.Draw(acanvas:TCanvas; map_fn:coord_convert; OCS:pM);
+procedure Attdef_.Draw(acanvas:TFPCustomCanvas; map_fn:coord_convert; OCS:pM);
 begin
   // Attdefs are used in the blocks section to act as templates for Attribs
   // so no need to draw them as there will be an Attrib in its place
@@ -896,7 +912,7 @@ begin
   if result=nil then raise Exception.Create('Block reference '+blockname+' not found');
 end;
 
-procedure Insert_.Draw(acanvas:TCanvas; map_fn:coord_convert; OCS:pM);
+procedure Insert_.Draw(acanvas:TFPCustomCanvas; map_fn:coord_convert; OCS:pM);
 var lp1        : integer;
     t_matrix   : pMatrix;
     TempMatrix : Matrix;
@@ -964,24 +980,24 @@ begin
   p2 := p_2;
 end;
 
-procedure Line_.Draw(acanvas:TCanvas; map_fn:coord_convert; OCS:pM);
+procedure Line_.Draw(acanvas:TFPCustomCanvas; map_fn:coord_convert; OCS:pM);
 var pa,pb    : TPoint;
     t_matrix : pMatrix;
 begin
   t_matrix := update_transformations(OCS_WCS,OCS);
-  with acanvas.Pen do if Color<>colour then Color:=colour;
+  //TODO:with acanvas.Pen do if Color<>colour then Color:=colour;
   pa := map_fn(p1,t_matrix);
   pb := map_fn(p2,t_matrix);
   acanvas.Moveto(pa.x,pa.y);
   acanvas.Lineto(pb.x,pb.y);
 end;
 
-procedure Line_.DrawVertices(acanvas:TCanvas; map_fn:coord_convert; OCS:pM);
+procedure Line_.DrawVertices(acanvas:TFPCustomCanvas; map_fn:coord_convert; OCS:pM);
 var po : TPoint;
     t_matrix : pMatrix;
 begin
   t_matrix := update_transformations(OCS_WCS,OCS);
-  with acanvas.Pen do if Color<>colour then Color:=colour;
+  //TODO:with acanvas.Pen do if Color<>colour then Color:=colour;
   po := map_fn(p1,t_matrix);
   draw_cross(acanvas,po);
   po := map_fn(p2,t_matrix);
@@ -1083,18 +1099,16 @@ begin
   radius := d;
 end;
 
-procedure Circle_.Draw(acanvas:TCanvas; map_fn:coord_convert; OCS:pM);
+procedure Circle_.Draw(acanvas:TFPCustomCanvas; map_fn:coord_convert; OCS:pM);
 var pa,pb    : TPoint;
     t_matrix : pMatrix;
 begin
   t_matrix := update_transformations(OCS_WCS,OCS);
-  with acanvas.Pen do if Color<>colour then Color:=colour;
+  //TODO:with acanvas.Pen do if Color<>colour then Color:=colour;
   pa := map_fn(aPoint3D(p1.x-radius,p1.y-radius,p1.z-radius),t_matrix);
   pb := map_fn(aPoint3D(p1.x+radius,p1.y+radius,p1.z+radius),t_matrix);
   // bug in Ellipse routine causes crash if extents are too small
-  if (pb.x>pa.x+1) and (pa.y>pb.y+1) then
-    acanvas.Ellipse(pa.x,pa.y,pb.x,pb.y)
-  else acanvas.pixels[pa.x,pa.y] := acanvas.Pen.Color;
+  acanvas.Ellipse(pa.x,pa.y,pb.x,pb.y);
 end;
 
 function Circle_.details : string;
@@ -1130,20 +1144,17 @@ begin
   angle2 := DegToRad(ea);
 end;
 
-procedure Arc_.Draw(acanvas:TCanvas; map_fn:coord_convert; OCS:pM);
+procedure Arc_.Draw(acanvas:TFPCustomCanvas; map_fn:coord_convert; OCS:pM);
 var pu,pv,pw,px : TPoint;
     t_matrix    : pMatrix;
 begin
   t_matrix := update_transformations(OCS_WCS,OCS);
-  with acanvas.Pen do if Color<>colour then Color:=colour;
+  //TODO:with acanvas.Pen do if Color<>colour then Color:=colour;
   pu := map_fn(aPoint3D(p1.x-radius,p1.y-radius,p1.z-radius),t_matrix);
   pv := map_fn(aPoint3D(p1.x+radius,p1.y+radius,p1.z+radius),t_matrix);
   pw := map_fn(aPoint3D(p1.x+cos(angle1)*radius,p1.y+sin(angle1)*radius,p1.z+radius),t_matrix);
   px := map_fn(aPoint3D(p1.x+cos(angle2)*radius,p1.y+sin(angle2)*radius,p1.z+radius),t_matrix);
-  if (pv.x>pu.x+1) and (pu.y>pv.y+1) then
-    acanvas.Arc(pu.x,pu.y,pv.x,pv.y,pw.x,pw.y,px.x,px.y)
-  else
-  acanvas.pixels[pu.x,pu.y] := acanvas.Pen.Color;
+  acanvas.Arc(pu.x,pu.y,pv.x,pv.y,pw.x,pw.y,px.x,px.y)
 end;
 
 function Arc_.details : string;
@@ -1220,26 +1231,26 @@ begin
   inherited destroy;
 end;
 
-procedure Polyline_.Draw(acanvas:TCanvas; map_fn:coord_convert; OCS:pM);
+procedure Polyline_.Draw(acanvas:TFPCustomCanvas; map_fn:coord_convert; OCS:pM);
 var PointArray : array[0..max_vertices_per_polyline-1] of TPoint;
     lp1,tn     : integer;
     t_matrix   : pMatrix;
 begin
   t_matrix := update_transformations(OCS_WCS,OCS);
-  with acanvas.Pen do if Color<>colour then Color:=colour;
+  //TODO:with acanvas.Pen do if Color<>colour then Color:=colour;
   for lp1:=0 to numvertices-1 do
     PointArray[lp1] := map_fn(polypoints^[lp1],t_matrix);
   if not closed then acanvas.Polyline(Slice(PointArray,numvertices))
   else acanvas.Polygon(Slice(PointArray,numvertices));
 end;
 
-procedure Polyline_.DrawVertices(acanvas:TCanvas; map_fn:coord_convert; OCS:pM);
+procedure Polyline_.DrawVertices(acanvas:TFPCustomCanvas; map_fn:coord_convert; OCS:pM);
 var po         : TPoint;
     lp1        : integer;
     t_matrix   : pMatrix;
 begin
   t_matrix := update_transformations(OCS_WCS,OCS);
-  with acanvas.Pen do if Color<>colour then Color:=colour;
+  //TODO:with acanvas.Pen do if Color<>colour then Color:=colour;
   for lp1:=0 to numvertices-1 do begin
     po := map_fn(polypoints^[lp1],t_matrix);
     draw_cross(acanvas,po);
@@ -1497,14 +1508,14 @@ type
   ptarray = array[0..max_vertices_per_polyline-1] of TPoint;
   pptarray = ^ptarray;
 
-procedure Polygon_mesh_.Draw(acanvas:TCanvas; map_fn:coord_convert; OCS:pM);
+procedure Polygon_mesh_.Draw(acanvas:TFPCustomCanvas; map_fn:coord_convert; OCS:pM);
 var PointArray  : array[0..max_vertices_per_polyline-1] of TPoint;
     tp          : TPoint;
     lp1,lp2,inx : integer;
     t_matrix    : pMatrix;
 begin
   t_matrix := update_transformations(OCS_WCS,OCS);
-  with acanvas.Pen do if Color<>colour then Color:=colour;
+  //TODO:with acanvas.Pen do if Color<>colour then Color:=colour;
   for lp1:=0 to numvertices-1 do
     PointArray[lp1] := map_fn(polypoints^[lp1],t_matrix);
   // draw the M N-length polylines - we can use the array directly
@@ -1580,13 +1591,13 @@ begin
             'Faces'#9 + IntToStr(numfaces);
 end;
 
-procedure Polyface_mesh_.Draw(acanvas:TCanvas; map_fn:coord_convert; OCS:pM);
+procedure Polyface_mesh_.Draw(acanvas:TFPCustomCanvas; map_fn:coord_convert; OCS:pM);
 var PointArray  : array[0..3] of TPoint;
     lp1,lp2,inx : integer;
     t_matrix    : pMatrix;
 begin
   t_matrix := update_transformations(OCS_WCS,OCS);
-  with acanvas.Pen do if Color<>colour then Color:=colour;
+  //TODO:with acanvas.Pen do if Color<>colour then Color:=colour;
   for lp1:=0 to numfaces-1 do begin
     for lp2:=0 to 3 do begin
       inx := facelist^[lp1].nf[lp2];
@@ -1645,7 +1656,7 @@ begin
   entities.Add(entity);
 end;
 
-procedure Entity_List.draw_primitives(acanvas:TCanvas; map_fn:coord_convert; OCS:pM);
+procedure Entity_List.draw_primitives(acanvas:TFPCustomCanvas; map_fn:coord_convert; OCS:pM);
 var lp1  : integer;
 begin
   for lp1:=0 to (entities.Count-1) do begin
@@ -1653,7 +1664,7 @@ begin
   end;
 end;
 
-procedure Entity_List.draw_vertices(acanvas:TCanvas; map_fn:coord_convert; OCS:pM);
+procedure Entity_List.draw_vertices(acanvas:TFPCustomCanvas; map_fn:coord_convert; OCS:pM);
 var lp1 : integer;
 begin
   for lp1:=0 to (entities.Count-1) do
@@ -1707,8 +1718,8 @@ end;
 procedure Entity_List.setcolour(col:integer);
 var lp1 : integer;
 begin
-  for lp1:=0 to (entities.Count-1) do
-    DXF_Entity(entities[lp1]).colour := col;
+  //TODO:for lp1:=0 to (entities.Count-1) do
+  //TODO:  DXF_Entity(entities[lp1]).colour := col;
 end;
 
 function Entity_List.closest_vertex_square_distance_2D(p:Point3D; var cl:DXF_Entity) : double;
@@ -1793,8 +1804,8 @@ begin
     // This has never been raised yet, but might as well be sure.
   end;
   Entity_List(entity_lists[i]).add_entity_to_list(entity);
-  if ((entity.colour=0) or (entity.colour=BYLAYER)) then
-    entity.setcolour_index(layer_colinx);
+  //TODO:  if ((entity.colour=BYLAYER)) then
+  //TODO:    entity.setcolour_index(layer_colinx);
   result := true;
 end;
 
@@ -1988,7 +1999,7 @@ begin
         layer.entity_names.delete(lp2);
         el.Free;
         if layer.entity_lists.count<>layer.entity_names.count then
-          showmessage('Internal error : Layer lists and names mismatch'); 
+          //TODO:showmessage('Internal error : Layer lists and names mismatch'); 
       end;
     end;
     if layer.num_lists=0 then begin
@@ -2024,11 +2035,11 @@ begin
   result := emax;
 end;
 
-procedure DXF_Object.max_min_extents(var emax,emin:Point3D);
+procedure DXF_Object.max_min_extents(var aemax,aemin:Point3D);
 var lp1 : integer;
 begin
   for lp1:=0 to layer_lists.Count-1 do
-    DXF_Layer(layer_lists[lp1]).max_min_extents(emax,emin);
+    DXF_Layer(layer_lists[lp1]).max_min_extents(aemax,aemin);
 end;
 ///////////////////////////////////////////////////////////////////////////////
 // Selection_lists class implementation

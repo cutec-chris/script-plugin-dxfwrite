@@ -13,7 +13,7 @@ interface
 
 uses
   { Borland }
-  SysUtils,StdCtrls,Dialogs,Classes,Graphics,
+  SysUtils,Classes,
   { Mine }
   DXF_Utils,DXF_structs;
 
