@@ -9,7 +9,8 @@ uses
 var
   aFile : DXF_Object;
   ActiveLayer: DXF_Layer;
-  APoints : array of Point3D;
+  APoints : array[0..max_vertices_per_polyline-1] of Point3D;
+  NumPoints : Integer;
 
 function LoadImage(aPath : PChar) : Boolean;stdcall;
 var
@@ -46,23 +47,30 @@ end;
 procedure StartPolyLine(x,y,z : Double);stdcall;
 begin
   InitFile;
-  SetLength(APoints,1);
+  NumPoints := 1;
   APoints[0].x:=x;
   APoints[0].y:=y;
   APoints[0].z:=z;
 end;
 procedure PolyLinePoint(x,y,z : Double);stdcall;
 begin
-  SetLength(APoints,length(APoints)+1);
-  APoints[length(APoints)-1].x:=x;
-  APoints[length(APoints)-1].y:=y;
-  APoints[length(APoints)-1].z:=z;
+  inc(NumPoints,1);
+  APoints[NumPoints-1].x:=x;
+  APoints[NumPoints-1].y:=y;
+  APoints[NumPoints-1].z:=z;
 end;
 procedure EndPolyLine;stdcall;
 var
   aLine: Polyline_;
 begin
-  aLine := Polyline_.create(origin3D,length(APoints),@APoints,0,True);
+  aLine := Polyline_.create(origin3D,NumPoints,@APoints[0],0,False);
+  ActiveLayer.add_entity_to_layer(aLine);
+end;
+procedure ClosePolyLine;stdcall;
+var
+  aLine: Polyline_;
+begin
+  aLine := Polyline_.create(origin3D,NumPoints,@APoints[0],0,False);
   ActiveLayer.add_entity_to_layer(aLine);
 end;
 
@@ -74,6 +82,7 @@ begin
        +#10+'procedure StartPolyLine(x,y,z : Double);stdcall;'
        +#10+'procedure PolyLinePoint(x,y,z : Double);stdcall;'
        +#10+'procedure EndPolyLine;stdcall;'
+       +#10+'procedure ClosePolyLine;stdcall;'
             ;
 end;
 
@@ -90,6 +99,7 @@ exports
   StartPolyLine,
   PolyLinePoint,
   EndPolyLine,
+  ClosePolyLine,
 
   ScriptDefinition,
   ScriptCleanup;

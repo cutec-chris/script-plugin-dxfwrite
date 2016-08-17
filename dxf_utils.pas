@@ -137,9 +137,12 @@ function normalize(p1:Point3D) : Point3D;
 var mag : double;
 begin
   mag := Sqrt( sqr(p1.x) + sqr(p1.y) + sqr(p1.z) );
-  result.x := p1.x/mag;
-  result.y := p1.y/mag;
-  result.z := p1.z/mag;
+  if mag<>0 then
+    begin
+      result.x := p1.x/mag;
+      result.y := p1.y/mag;
+      result.z := p1.z/mag;
+    end;
 end;
 
 function mag(p1:Point3D) : double;

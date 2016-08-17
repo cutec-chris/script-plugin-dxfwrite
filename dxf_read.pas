@@ -24,7 +24,7 @@ interface
 
 uses
   { Borland }
-  Windows,SysUtils,Classes,
+  SysUtils,Classes,
   { Mine }
   DXF_structs,DXF_Utils,Math;
 
@@ -601,8 +601,8 @@ begin
     except
       on E:DXF_read_exception do begin
         //stopped_thinking;
-        if MessageBox(0,@E.message[1],'DXF read error warning',MB_OKCANCEL)=IDCANCEL then
-          raise DXF_read_exception.Create('User aborted',-1);
+        //if MessageBox(0,@E.message[1],'DXF read error warning',MB_OKCANCEL)=IDCANCEL then
+        //  raise DXF_read_exception.Create('User aborted',-1);
         //thinking_bar(nil,'Reading DXF file...');
       end;
       on E:Exception do
@@ -911,7 +911,7 @@ begin
   except
     on E:DXF_read_exception do begin
       //stopped_thinking;
-      MessageBox(0,@E.message[1],'DXF Read Error',MB_ICONWARNING);
+      //MessageBox(0,@E.message[1],'DXF Read Error',MB_ICONWARNING);
     end;
     on E:EAccessViolation do begin
       //stopped_thinking;
