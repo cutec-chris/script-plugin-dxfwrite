@@ -9,9 +9,9 @@
         <Filename Value="dxfwrite.lpr"/>
         <IsPartOfProject Value="True"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="65"/>
-        <CursorPos X="17" Y="102"/>
-        <UsageCount Value="61"/>
+        <TopLine Value="47"/>
+        <CursorPos X="21" Y="72"/>
+        <UsageCount Value="63"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
@@ -377,18 +377,18 @@
         <Filename Value="dxf_read.pas"/>
         <UnitName Value="DXF_read"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="747"/>
-        <CursorPos Y="764"/>
-        <UsageCount Value="11"/>
+        <TopLine Value="195"/>
+        <CursorPos Y="220"/>
+        <UsageCount Value="12"/>
         <Loaded Value="True"/>
       </Unit51>
       <Unit52>
         <Filename Value="dxf_structs.pas"/>
         <UnitName Value="DXF_structs"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="1208"/>
-        <CursorPos X="29" Y="1229"/>
-        <UsageCount Value="11"/>
+        <TopLine Value="1775"/>
+        <CursorPos Y="1797"/>
+        <UsageCount Value="12"/>
         <Loaded Value="True"/>
       </Unit52>
       <Unit53>
@@ -404,7 +404,7 @@
         <EditorIndex Value="8"/>
         <TopLine Value="266"/>
         <CursorPos X="10" Y="273"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="12"/>
         <Loaded Value="True"/>
       </Unit54>
       <Unit55>
@@ -417,9 +417,9 @@
         <Filename Value="dxf_write.pas"/>
         <UnitName Value="DXF_write"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="66"/>
+        <TopLine Value="88"/>
         <CursorPos Y="90"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="12"/>
         <Loaded Value="True"/>
       </Unit56>
       <Unit57>
@@ -428,7 +428,7 @@
         <EditorIndex Value="7"/>
         <TopLine Value="210"/>
         <CursorPos X="3" Y="232"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="12"/>
         <Loaded Value="True"/>
       </Unit57>
       <Unit58>
@@ -436,7 +436,7 @@
         <UnitName Value="FPImgCanv"/>
         <EditorIndex Value="5"/>
         <CursorPos X="32" Y="23"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="12"/>
         <Loaded Value="True"/>
       </Unit58>
       <Unit59>
@@ -445,7 +445,7 @@
         <EditorIndex Value="6"/>
         <TopLine Value="9"/>
         <CursorPos X="31" Y="31"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="12"/>
         <Loaded Value="True"/>
       </Unit59>
       <Unit60>
@@ -459,9 +459,9 @@
         <Filename Value="dxf_utils.pas"/>
         <UnitName Value="DXF_Utils"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="320"/>
+        <TopLine Value="128"/>
         <CursorPos Y="350"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="12"/>
         <Loaded Value="True"/>
       </Unit61>
       <Unit62>
@@ -475,128 +475,128 @@
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="dxfwrite.lpr"/>
-        <Caret Line="93" Column="15" TopLine="50"/>
+        <Caret Line="42" Column="28" TopLine="19"/>
       </Position1>
       <Position2>
-        <Filename Value="dxf_utils.pas"/>
-        <Caret Line="342" TopLine="320"/>
+        <Filename Value="dxfwrite.lpr"/>
+        <Caret Line="55" TopLine="19"/>
       </Position2>
       <Position3>
-        <Filename Value="dxf_write.pas"/>
-        <Caret Line="76" TopLine="54"/>
+        <Filename Value="dxfwrite.lpr"/>
+        <Caret Line="56" Column="46" TopLine="34"/>
       </Position3>
       <Position4>
         <Filename Value="dxfwrite.lpr"/>
-        <Caret Line="65" TopLine="44"/>
+        <Caret Line="55" TopLine="34"/>
       </Position4>
       <Position5>
         <Filename Value="dxfwrite.lpr"/>
-        <Caret Line="67" TopLine="44"/>
+        <Caret Line="56" TopLine="34"/>
       </Position5>
       <Position6>
-        <Filename Value="dxf_utils.pas"/>
-        <Caret Line="340" Column="23" TopLine="320"/>
+        <Filename Value="dxfwrite.lpr"/>
+        <Caret Line="57" TopLine="34"/>
       </Position6>
       <Position7>
-        <Filename Value="dxf_write.pas"/>
-        <Caret Line="90" TopLine="66"/>
+        <Filename Value="dxfwrite.lpr"/>
+        <Caret Line="58" TopLine="34"/>
       </Position7>
       <Position8>
-        <Filename Value="dxf_write.pas"/>
-        <Caret Line="91" TopLine="66"/>
+        <Filename Value="dxfwrite.lpr"/>
+        <Caret Line="60" Column="47" TopLine="34"/>
       </Position8>
       <Position9>
-        <Filename Value="dxf_structs.pas"/>
-        <Caret Line="1831" TopLine="1809"/>
+        <Filename Value="dxfwrite.lpr"/>
+        <Caret Line="55" TopLine="34"/>
       </Position9>
       <Position10>
-        <Filename Value="dxf_structs.pas"/>
-        <Caret Line="1825" TopLine="1809"/>
+        <Filename Value="dxfwrite.lpr"/>
+        <Caret Line="56" TopLine="34"/>
       </Position10>
       <Position11>
-        <Filename Value="dxf_structs.pas"/>
-        <Caret Line="1826" TopLine="1809"/>
+        <Filename Value="dxfwrite.lpr"/>
+        <Caret Line="57" TopLine="34"/>
       </Position11>
       <Position12>
-        <Filename Value="dxf_structs.pas"/>
-        <Caret Line="1714" TopLine="1692"/>
+        <Filename Value="dxfwrite.lpr"/>
+        <Caret Line="58" TopLine="34"/>
       </Position12>
       <Position13>
-        <Filename Value="dxf_structs.pas"/>
-        <Caret Line="1715" TopLine="1692"/>
+        <Filename Value="dxfwrite.lpr"/>
+        <Caret Line="59" TopLine="34"/>
       </Position13>
       <Position14>
-        <Filename Value="dxf_structs.pas"/>
-        <Caret Line="1317" TopLine="1295"/>
+        <Filename Value="dxfwrite.lpr"/>
+        <Caret Line="60" TopLine="34"/>
       </Position14>
       <Position15>
-        <Filename Value="dxf_structs.pas"/>
-        <Caret Line="1318" TopLine="1295"/>
+        <Filename Value="dxfwrite.lpr"/>
+        <Caret Line="53" Column="37" TopLine="34"/>
       </Position15>
       <Position16>
-        <Filename Value="dxf_utils.pas"/>
-        <Caret Line="340" TopLine="320"/>
+        <Filename Value="dxfwrite.lpr"/>
+        <Caret Line="55" TopLine="34"/>
       </Position16>
       <Position17>
-        <Filename Value="dxf_utils.pas"/>
-        <Caret Line="341" TopLine="320"/>
+        <Filename Value="dxfwrite.lpr"/>
+        <Caret Line="62" TopLine="34"/>
       </Position17>
       <Position18>
-        <Filename Value="dxf_utils.pas"/>
-        <Caret Line="342" TopLine="320"/>
+        <Filename Value="dxf_structs.pas"/>
+        <Caret Line="681" TopLine="659"/>
       </Position18>
       <Position19>
-        <Filename Value="dxf_utils.pas"/>
-        <Caret Line="343" TopLine="320"/>
+        <Filename Value="dxf_structs.pas"/>
+        <Caret Line="682" TopLine="659"/>
       </Position19>
       <Position20>
-        <Filename Value="dxf_utils.pas"/>
-        <Caret Line="347" TopLine="320"/>
+        <Filename Value="dxfwrite.lpr"/>
+        <Caret Line="60" TopLine="34"/>
       </Position20>
       <Position21>
-        <Filename Value="dxf_utils.pas"/>
-        <Caret Line="348" TopLine="320"/>
+        <Filename Value="dxfwrite.lpr"/>
+        <Caret Line="61" TopLine="34"/>
       </Position21>
       <Position22>
-        <Filename Value="dxf_utils.pas"/>
-        <Caret Line="349" TopLine="320"/>
+        <Filename Value="dxfwrite.lpr"/>
+        <Caret Line="62" TopLine="34"/>
       </Position22>
       <Position23>
-        <Filename Value="dxf_utils.pas"/>
-        <Caret Line="350" TopLine="320"/>
+        <Filename Value="dxf_structs.pas"/>
+        <Caret Line="681" TopLine="659"/>
       </Position23>
       <Position24>
-        <Filename Value="dxf_read.pas"/>
-        <Caret Line="27" Column="3" TopLine="9"/>
+        <Filename Value="dxf_structs.pas"/>
+        <Caret Line="682" TopLine="659"/>
       </Position24>
       <Position25>
-        <Filename Value="dxf_read.pas"/>
-        <Caret Line="605" Column="11" TopLine="582"/>
+        <Filename Value="dxfwrite.lpr"/>
+        <Caret Line="62" TopLine="34"/>
       </Position25>
       <Position26>
-        <Filename Value="dxf_read.pas"/>
-        <Caret Line="865" Column="51" TopLine="838"/>
+        <Filename Value="dxf_structs.pas"/>
+        <Caret Line="1797" TopLine="1775"/>
       </Position26>
       <Position27>
-        <Filename Value="dxf_read.pas"/>
-        <Caret Line="786" Column="15" TopLine="771"/>
+        <Filename Value="dxfwrite.lpr"/>
+        <Caret Line="99" TopLine="78"/>
       </Position27>
       <Position28>
-        <Filename Value="dxf_read.pas"/>
-        <Caret Line="794" Column="29" TopLine="756"/>
+        <Filename Value="dxfwrite.lpr"/>
+        <Caret Line="69" TopLine="47"/>
       </Position28>
       <Position29>
         <Filename Value="dxfwrite.lpr"/>
-        <Caret Line="12"/>
+        <Caret Line="71" TopLine="47"/>
       </Position29>
       <Position30>
         <Filename Value="dxfwrite.lpr"/>
-        <Caret Line="66" Column="48" TopLine="34"/>
+        <Caret Line="72" TopLine="47"/>
       </Position30>
     </JumpHistory>
   </ProjectSession>
   <Debugging>
-    <BreakPoints Count="9">
+    <BreakPoints Count="10">
       <Item1>
         <Kind Value="bpkSource"/>
         <WatchScope Value="wpsLocal"/>
@@ -660,6 +660,13 @@
         <Source Value="..\serialport\serialport.lpr"/>
         <Line Value="58"/>
       </Item9>
+      <Item10>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="dxfwrite.lpr"/>
+        <Line Value="99"/>
+      </Item10>
     </BreakPoints>
   </Debugging>
 </CONFIG>
