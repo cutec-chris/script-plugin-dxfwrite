@@ -8,9 +8,8 @@
       <Unit0>
         <Filename Value="dxfwrite.lpr"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
-        <TopLine Value="47"/>
-        <CursorPos X="21" Y="72"/>
+        <TopLine Value="110"/>
+        <CursorPos X="65" Y="133"/>
         <UsageCount Value="63"/>
         <Loaded Value="True"/>
       </Unit0>
@@ -458,6 +457,7 @@
       <Unit61>
         <Filename Value="dxf_utils.pas"/>
         <UnitName Value="DXF_Utils"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <TopLine Value="128"/>
         <CursorPos Y="350"/>

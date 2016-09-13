@@ -130,7 +130,7 @@ begin
        +#10+'function SaveImage(aPath : PChar) : Boolean;stdcall;'
        +#10+'function ReloadWorkImage(aPath : PChar) : Boolean;stdcall;'
        +#10+'function SaveWorkImage(aPath : PChar) : Boolean;stdcall;'
-       +#10+'function AddLayer(aName : PChar) : Boolean;'
+       +#10+'function AddLayer(aName : PChar) : Boolean;stdcall;'
        +#10+'procedure StartPolyLine(x,y,z : Double);stdcall;'
        +#10+'procedure PolyLinePoint(x,y,z : Double);stdcall;'
        +#10+'procedure EndPolyLine;stdcall;'
