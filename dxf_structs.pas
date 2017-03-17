@@ -245,6 +245,7 @@ type
     polypoints  : ppointlist;
     numattrs    : integer;
     attribs     : array[0..max_my_attribs-1] of double;
+    thickness   : double;
     constructor create(OCSaxis:Point3D; numpoints:integer; points:ppointlist; col:integer; closed_:boolean);
     destructor  destroy;                                               override;
     procedure   Draw(acanvas:TFPCustomCanvas; map_fn:coord_convert; OCS:pM); override;
@@ -1303,6 +1304,7 @@ begin
   inherited;
   if closed then writeln(IO,70 ,EOL,1+8) // 1+8 = closed+3D
   else writeln(IO,70 ,EOL,8);
+  writeln(IO,39,EOL,float_out(thickness));
   for lp1:=0 to numvertices-1 do begin
     writeln(IO,0 ,EOL,'VERTEX');
     writeln(IO,70 ,EOL,32);    // 3D polyline mesh vertex

@@ -398,15 +398,15 @@ end;
 ///////////////////////////////////////////////////////////////////////////////
 function float_out(f:double) : string;
 begin
-  result := FloatToStrF(f,ffFixed,7,3);
+  result := StringReplace(FloatToStrF(f,ffFixed,7,3),',','.',[rfReplaceAll]);
   //result := FloatToStr(f);
 end;
 
 function Point3DToStr(p:Point3D) : string;
 begin
-  result := '(' + FloatToStrF(p.x,ffFixed,7,2) + ', ' +
-                  FloatToStrF(p.y,ffFixed,7,2) + ', ' +
-                  FloatToStrF(p.z,ffFixed,7,2) + ')';
+  result := '(' + StringReplace(FloatToStrF(p.x,ffFixed,7,2),',','.',[rfReplaceAll]) + ', ' +
+                  StringReplace(FloatToStrF(p.y,ffFixed,7,2),',','.',[rfReplaceAll]) + ', ' +
+                  StringReplace(FloatToStrF(p.z,ffFixed,7,2),',','.',[rfReplaceAll]) + ')';
 end;
 
 function BoolToStr(b:boolean) : string;
