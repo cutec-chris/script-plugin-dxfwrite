@@ -52,16 +52,22 @@ begin
   rPoint.x:=x;
   rPoint.y:=y;
   rPoint.z:=z;
-  for lp1:=0 to aWorkFile.layer_lists.Count-1 do begin
-    layer1 := DXF_Layer(aWorkFile.layer_lists[lp1]);
-    for lp2:=0 to layer1.entity_lists.count-1 do begin
-      elist1 := Entity_List(layer1.entity_lists[lp2]);
-      for lp3:=elist1.entities.count-1 downto 0 do begin
-        ent := DXF_Entity(elist1.entities[lp3]);
-        if not (Ent is Block_) then
-          ent.translate(rPoint);
+  Result := False;
+  if not Assigned(aWorkFile) then exit;
+  try
+    for lp1:=0 to aWorkFile.layer_lists.Count-1 do begin
+      layer1 := DXF_Layer(aWorkFile.layer_lists[lp1]);
+      for lp2:=0 to layer1.entity_lists.count-1 do begin
+        elist1 := Entity_List(layer1.entity_lists[lp2]);
+        for lp3:=elist1.entities.count-1 downto 0 do begin
+          ent := DXF_Entity(elist1.entities[lp3]);
+          if not (Ent is Block_) then
+            ent.translate(rPoint);
+        end;
       end;
     end;
+    Result := True;
+  except
   end;
 end;
 procedure InitFile;
@@ -74,8 +80,11 @@ begin
 end;
 function MergeWorkImageToImage : Boolean;stdcall;
 begin
+  Result := False;
   InitFile;
+  if not Assigned(aWorkFile) then exit;
   aFile.merge_files(aWorkFile);
+  Result := True;
 end;
 function SaveImage(aPath : PChar) : Boolean;stdcall;
 begin
@@ -87,11 +96,12 @@ begin
   if not Assigned(aWorkFile) then aWorkFile := DXF_Object.create('promet-erp');
   aWorkFile.save_to_file(aPath);
 end;
-function AddLayer(aName : PChar) : Boolean;
+function AddLayer(aName : PChar;aColor : Integer) : Boolean;
 begin
   Result:=False;
   if not Assigned(aFile) then exit;
   ActiveLayer := aFile.new_layer(aName,False);
+  ActiveLayer.Colour:=aColor;
   Result := Assigned(ActiveLayer);
 end;
 procedure StartPolyLine(x,y,z : Double);stdcall;
@@ -123,6 +133,18 @@ begin
   aLine := Polyline_.create(origin3D,NumPoints,@APoints[0],0,False);
   ActiveLayer.add_entity_to_layer(aLine);
 end;
+procedure Circle(x,y,z,radius : Double);stdcall;
+var
+  aCircle: Circle_;
+  APoint : Point3D;
+begin
+  InitFile;
+  APoint.x := x;
+  APoint.y := y;
+  APoint.z := z;
+  aCircle := Circle_.create(origin3D,Apoint,radius,0);
+  ActiveLayer.add_entity_to_layer(aCircle);
+end;
 
 function ScriptDefinition : PChar;stdcall;
 begin
@@ -130,11 +152,12 @@ begin
        +#10+'function SaveImage(aPath : PChar) : Boolean;stdcall;'
        +#10+'function ReloadWorkImage(aPath : PChar) : Boolean;stdcall;'
        +#10+'function SaveWorkImage(aPath : PChar) : Boolean;stdcall;'
-       +#10+'function AddLayer(aName : PChar) : Boolean;stdcall;'
+       +#10+'function AddLayer(aName : PChar;aColor : Integer) : Boolean;stdcall;'
        +#10+'procedure StartPolyLine(x,y,z : Double);stdcall;'
        +#10+'procedure PolyLinePoint(x,y,z : Double);stdcall;'
        +#10+'procedure EndPolyLine;stdcall;'
-       +#10+'procedure ClosePolyLine;stdcall;'
+       +#10+'procedure EndPolyLine;stdcall;'
+       +#10+'procedure Circle(x,y,z,radius : Double);stdcall;'
        +#10+'function TranslateWorkImage(x,y,z : Double) : Boolean;stdcall;'
        +#10+'function MergeWorkImageToImage : Boolean;stdcall;'
             ;
