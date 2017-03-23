@@ -96,11 +96,12 @@ begin
   if not Assigned(aWorkFile) then aWorkFile := DXF_Object.create('promet-erp');
   aWorkFile.save_to_file(aPath);
 end;
-function AddLayer(aName : PChar;aColor : Integer) : Boolean;
+function AddLayer(aName : PChar;aColor : Integer) : Boolean;stdcall;
 begin
+  InitFile;
   Result:=False;
   if not Assigned(aFile) then exit;
-  ActiveLayer := aFile.new_layer(aName,False);
+  ActiveLayer := aFile.create_or_find_layer(aName);
   ActiveLayer.Colour:=aColor;
   Result := Assigned(ActiveLayer);
 end;
@@ -127,11 +128,12 @@ begin
   aLine.thickness:=thickness;
   ActiveLayer.add_entity_to_layer(aLine);
 end;
-procedure ClosePolyLine;stdcall;
+procedure ClosePolyLine(thickness : double);stdcall;
 var
   aLine: Polyline_;
 begin
   aLine := Polyline_.create(origin3D,NumPoints,@APoints[0],0,False);
+  aLine.thickness:=thickness;
   ActiveLayer.add_entity_to_layer(aLine);
 end;
 procedure Circle(x,y,z,radius : Double);stdcall;
@@ -156,8 +158,8 @@ begin
        +#10+'function AddLayer(aName : PChar;aColor : Integer) : Boolean;stdcall;'
        +#10+'procedure StartPolyLine(x,y,z : Double);stdcall;'
        +#10+'procedure PolyLinePoint(x,y,z : Double);stdcall;'
-       +#10+'procedure ClosePolyLine;stdcall;'
-       +#10+'procedure EndPolyLine;stdcall;'
+       +#10+'procedure ClosePolyLine(thickness : double);stdcall;'
+       +#10+'procedure EndPolyLine(thickness : double);stdcall;'
        +#10+'procedure Circle(x,y,z,radius : Double);stdcall;'
        +#10+'function TranslateWorkImage(x,y,z : Double) : Boolean;stdcall;'
        +#10+'function MergeWorkImageToImage : Boolean;stdcall;'
